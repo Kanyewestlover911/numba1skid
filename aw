@@ -17,7 +17,6 @@ local SilentAimSettings = {
     VisibleCheck = false, 
     TargetPart = "HumanoidRootPart",
     SilentAimMethod = "Raycast",
-    
     FOVRadius = 200,
     FOVVisible = false,
     ShowSilentAimTarget = false, 

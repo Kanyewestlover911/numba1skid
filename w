@@ -13,7 +13,7 @@ local SilentAimSettings = {
     ClassName = "Universal Silent Aim - by flow",
     ToggleKey = "RightAlt",
     
-    TeamCheck = true,
+    TeamCheck = false,
     VisibleCheck = false, 
     TargetPart = "HumanoidRootPart",
     SilentAimMethod = "Raycast",

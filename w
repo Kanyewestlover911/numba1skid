@@ -10,13 +10,14 @@ end
 local SilentAimSettings = {
     Enabled = true,
     
-    ClassName = "Universal Silent Aim - Project Silent",
-    ToggleKey = "End",
+    ClassName = "Universal Silent Aim - by flow",
+    ToggleKey = "RightAlt",
     
-    TeamCheck = false,
+    TeamCheck = true,
     VisibleCheck = false, 
     TargetPart = "HumanoidRootPart",
     SilentAimMethod = "Raycast",
+    
     FOVRadius = 200,
     FOVVisible = false,
     ShowSilentAimTarget = false, 
@@ -239,9 +240,9 @@ local function getClosestPlayer()
 end
 
 -- ui creating & handling
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xaxaxaxaxaxaxaxaxa/Libraries/main/UI's/Linoria/Source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/Library.lua"))()
 
-local Window = Library:CreateWindow("Universal Silent Aim, by flower")
+local Window = Library:CreateWindow("Universal Silent Aim, by Project Redacted")
 local GeneralTab = Window:AddTab("General")
 local MainBOX = GeneralTab:AddLeftTabbox("Main") do
     local Main = MainBOX:AddTab("Main")

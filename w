@@ -396,7 +396,7 @@ oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
     if Toggles.aim_Enabled.Value and self == workspace and not checkcaller() and chance == true then
         if Method == "FindPartOnRayWithIgnoreList" and Options.Method.Value == Method then
             if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRayWithIgnoreList) then
-                local A_Ray = Arguments[2]
+               
 
                 local HitPart = getClosestPlayer()
                 if HitPart then

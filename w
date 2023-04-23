@@ -1,4 +1,4 @@
--- loader
+-- init
 if not game:IsLoaded() then 
     game.Loaded:Wait()
 end
@@ -8,9 +8,9 @@ if not syn or not protectgui then
 end
 
 local SilentAimSettings = {
-    Enabled = true,
+    Enabled = false,
     
-    ClassName = "Universal Silent Aim - by flow",
+    ClassName = "Universal Silent Aim - Averiias, Stefanuk12, xaxa",
     ToggleKey = "RightAlt",
     
     TeamCheck = false,
@@ -18,7 +18,7 @@ local SilentAimSettings = {
     TargetPart = "HumanoidRootPart",
     SilentAimMethod = "Raycast",
     
-    FOVRadius = 200,
+    FOVRadius = 130,
     FOVVisible = false,
     ShowSilentAimTarget = false, 
     
@@ -242,7 +242,8 @@ end
 -- ui creating & handling
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/Library.lua"))()
 
-local Window = Library:CreateWindow("Universal Silent Aim, by flow")
+
+local Window = Library:CreateWindow("Universal Silent Aim, by Averiias, xaxa, and Stefanuk12")
 local GeneralTab = Window:AddTab("General")
 local MainBOX = GeneralTab:AddLeftTabbox("Main") do
     local Main = MainBOX:AddTab("Main")
@@ -263,10 +264,10 @@ local MainBOX = GeneralTab:AddLeftTabbox("Main") do
     Main:AddToggle("VisibleCheck", {Text = "Visible Check", Default = SilentAimSettings.VisibleCheck}):OnChanged(function()
         SilentAimSettings.VisibleCheck = Toggles.VisibleCheck.Value
     end)
-    Main:AddDropdown("TargetPart", {Text = "Target Part", Default = SilentAimSettings.TargetPart, Values = {"Head", "HumanoidRootPart", "Random"}}):OnChanged(function()
+    Main:AddDropdown("TargetPart", {AllowNull = true, Text = "Target Part", Default = SilentAimSettings.TargetPart, Values = {"Head", "HumanoidRootPart", "Random"}}):OnChanged(function()
         SilentAimSettings.TargetPart = Options.TargetPart.Value
     end)
-    Main:AddDropdown("Method", {Text = "Silent Aim Method", Default = SilentAimSettings.SilentAimMethod, Values = {
+    Main:AddDropdown("Method", {AllowNull = true, Text = "Silent Aim Method", Default = SilentAimSettings.SilentAimMethod, Values = {
         "Raycast","FindPartOnRay",
         "FindPartOnRayWithWhitelist",
         "FindPartOnRayWithIgnoreList",
@@ -332,7 +333,7 @@ end
 
 local SaveConfigurationBOX = GeneralTab:AddRightTabbox("Save Configuration") do 
     local Main = SaveConfigurationBOX:AddTab("Save Configuration")
-    Main:AddDropdown("SaveConfigurationDropdown", {Values = GetFiles(), Text = "Choose Configuration to Save"})
+    Main:AddDropdown("SaveConfigurationDropdown", {AllowNull = true, Values = GetFiles(), Text = "Choose Configuration to Save"})
     Main:AddButton("Save Configuration", function()
         if Options.SaveConfigurationDropdown.Value then 
             UpdateFile(Options.SaveConfigurationDropdown.Value)
@@ -343,7 +344,7 @@ end
 local LoadConfigurationBOX = GeneralTab:AddRightTabbox("Load Configuration") do 
     local Main = LoadConfigurationBOX:AddTab("Load Configuration")
     
-    Main:AddDropdown("LoadConfigurationDropdown", {Values = GetFiles(), Text = "Choose Configuration to Load"})
+    Main:AddDropdown("LoadConfigurationDropdown", {AllowNull = true, Values = GetFiles(), Text = "Choose Configuration to Load"})
     Main:AddButton("Load Configuration", function()
         if table.find(GetFiles(), Options.LoadConfigurationDropdown.Value) then
             LoadFile(Options.LoadConfigurationDropdown.Value)
@@ -396,7 +397,7 @@ oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
     if Toggles.aim_Enabled.Value and self == workspace and not checkcaller() and chance == true then
         if Method == "FindPartOnRayWithIgnoreList" and Options.Method.Value == Method then
             if ValidateArguments(Arguments, ExpectedArguments.FindPartOnRayWithIgnoreList) then
-               
+                local A_Ray = Arguments[2]
 
                 local HitPart = getClosestPlayer()
                 if HitPart then
